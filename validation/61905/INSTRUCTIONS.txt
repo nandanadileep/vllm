@@ -1,0 +1,61 @@
+vLLM #61905: GPU reproduction and validation
+
+These standalone scripts and saved results accompany the three-file scheduler
+fix. They are kept on a separate evidence branch to keep the upstream PR small.
+See environment.json for exact source, native-wheel and model revisions.
+
+Requirements: a fresh vLLM source checkout, its installed CUDA Python environment,
+one NVIDIA GPU, and these three Python scripts in the same external directory.
+Installation follows vLLM's Python development instructions. The saved runs used
+an H100 PCIe 80GB, Qwen3-0.6B FP16, eager mode and async scheduling. Native sources
+are identical between the recorded wheel and baseline commits.
+
+Set REPRO to this directory and cd to your fresh vLLM checkout. Set STORAGE and
+RESULTS to new writable directories. Do not use a checkout with unsaved changes.
+
+    export VLLM_ENABLE_V1_MULTIPROCESSING=0
+    export VLLM_USE_V2_MODEL_RUNNER=0
+    export PYTHONPATH="$REPRO:$PWD"
+    mkdir -p "$STORAGE" "$RESULTS"
+    git switch --detach 852989f580820849113d67d13fd8053e279d0444
+    .venv/bin/python "$REPRO/rg_reuse_gpu.py" store --storage "$STORAGE" --output "$RESULTS/store.json"
+    .venv/bin/python "$REPRO/rg_reuse_gpu.py" oracle --storage "$STORAGE" --output "$RESULTS/oracle.json"
+
+For each source tree, run the four cells below: policy fail/recompute crossed
+with success/failure. Use --load-fails only for failure cells. Use --expect-fixed
+only for the patched tree at dff8bc3fbb69afc133ed858250e35befed4547db.
+
+    .venv/bin/python "$REPRO/rg_reuse_gpu.py" trial --storage "$STORAGE" --output "$RESULTS/baseline-fail-failure.json" --policy fail --load-fails --trials 3
+
+Name all eight outputs as shown in results/mrv1, then compare:
+
+    .venv/bin/python "$REPRO/rg_reuse_compare.py" "$RESULTS"
+
+For Model Runner V2, set VLLM_USE_V2_MODEL_RUNNER=1 and VLLM_GPU_SYNC_CHECK=error,
+and use separate storage/results directories. For the UNPATCHED V2 recompute
+failure cell, add --stop-after-report: this records the wrong rewind and cancels
+the unrelated request before further decoding. The initial unbounded run crashed
+with CUDA illegal memory access after the rewind; its redacted log is retained.
+The exact kernel root cause of that crash has not been independently localized.
+No model-output comparison is claimed for the bounded baseline V2 recompute cell.
+All patched cells run to normal completion without this early cancellation.
+
+Assertions check that 112 tokens were offered externally, one load actually ran,
+the owner filled all eight usable physical blocks, the first output remained in
+the normal engine batch queue, and cancellation happened before handling it.
+Observer wrappers record state but delegate scheduling and output processing
+unchanged. Actual model forwards and worker outputs are used. Failure injection
+uses vLLM's upstream LoadRecoveryExampleConnector; the probe normalizes its empty
+error return to a set for MultiConnector and grants loads only to the owner.
+
+All 24 patched trials across both runners completed normally, without affecting
+the unrelated request. All eight output tokens and their selected-token log
+probabilities exactly matched each runner's full-recompute oracle. Successful-load
+controls also matched. MRV1 unpatched recompute still matched greedy output in
+this example despite its incorrect progress reset; no silent corruption claim is
+made. This does not establish the frequency of this case in production connectors.
+Producer throughput/latency impact is not measured by these small correctness runs.
+
+Credit: ArijitDeb's #61905 report and inference-correctness-lab reproduction work;
+vLLM's upstream example connectors. Codex implemented this additional GPU probe
+and comparison. The human submitter reviewed the proposed scheduler/test diff.

@@ -1,0 +1,35 @@
+{
+  "source_commit": "852989f580820849113d67d13fd8053e279d0444",
+  "source_diff": "",
+  "source_path": "$VLLM_SOURCE",
+  "torch": "2.14.0+cu130",
+  "cuda": "13.0",
+  "gpu": "NVIDIA H100 PCIe",
+  "mode": "oracle",
+  "model_runner_v2_env": "1",
+  "output": {
+    "tokens": [
+      2022,
+      2023,
+      2024,
+      2025,
+      2026,
+      2027,
+      2028,
+      2029
+    ],
+    "chosen_logprobs": [
+      -0.0003409996279515326,
+      -0.02873762883245945,
+      -3.4450891689630225e-05,
+      -0.002821395406499505,
+      -0.0007165487040765584,
+      -0.00026043839170597494,
+      -4.768258077092469e-05,
+      -0.0020223658066242933
+    ],
+    "finish_reason": "length",
+    "num_cached_tokens": 0,
+    "text": "ization\tforbl program(eapecheck.Forms"
+  }
+}

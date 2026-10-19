@@ -1,0 +1,78 @@
+{
+  "oracle_tokens": [
+    2022,
+    2023,
+    2024,
+    2025,
+    2026,
+    2027,
+    2028,
+    2029
+  ],
+  "cells": [
+    {
+      "cell": "baseline-fail-success",
+      "trials": 3,
+      "wrong_attribution": 0,
+      "greedy_matches_oracle": 3,
+      "max_chosen_logprob_delta": 0.0,
+      "median_ttft_s": 0.021943314000964165
+    },
+    {
+      "cell": "baseline-fail-failure",
+      "trials": 3,
+      "wrong_attribution": 3,
+      "greedy_matches_oracle": 0,
+      "max_chosen_logprob_delta": null,
+      "median_ttft_s": null
+    },
+    {
+      "cell": "baseline-recompute-success",
+      "trials": 3,
+      "wrong_attribution": 0,
+      "greedy_matches_oracle": 3,
+      "max_chosen_logprob_delta": 0.0,
+      "median_ttft_s": 0.02066020295023918
+    },
+    {
+      "cell": "baseline-recompute-failure",
+      "trials": 3,
+      "wrong_attribution": 3,
+      "greedy_matches_oracle": 3,
+      "max_chosen_logprob_delta": 2.318061888217926e-05,
+      "median_ttft_s": 0.02086788695305586
+    },
+    {
+      "cell": "patched-fail-success",
+      "trials": 3,
+      "wrong_attribution": 0,
+      "greedy_matches_oracle": 3,
+      "max_chosen_logprob_delta": 0.0,
+      "median_ttft_s": 0.021049082279205322
+    },
+    {
+      "cell": "patched-fail-failure",
+      "trials": 3,
+      "wrong_attribution": 0,
+      "greedy_matches_oracle": 3,
+      "max_chosen_logprob_delta": 0.0,
+      "median_ttft_s": 0.021072133909910917
+    },
+    {
+      "cell": "patched-recompute-success",
+      "trials": 3,
+      "wrong_attribution": 0,
+      "greedy_matches_oracle": 3,
+      "max_chosen_logprob_delta": 0.0,
+      "median_ttft_s": 0.020883185788989067
+    },
+    {
+      "cell": "patched-recompute-failure",
+      "trials": 3,
+      "wrong_attribution": 0,
+      "greedy_matches_oracle": 3,
+      "max_chosen_logprob_delta": 0.0,
+      "median_ttft_s": 0.0208811117336154
+    }
+  ]
+}

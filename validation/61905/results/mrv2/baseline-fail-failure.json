@@ -1,0 +1,192 @@
+{
+  "source_commit": "852989f580820849113d67d13fd8053e279d0444",
+  "source_diff": "",
+  "source_path": "$VLLM_SOURCE",
+  "torch": "2.14.0+cu130",
+  "cuda": "13.0",
+  "gpu": "NVIDIA H100 PCIe",
+  "mode": "trial",
+  "model_runner_v2_env": "1",
+  "trials": [
+    {
+      "trial": 0,
+      "defer_block_free": false,
+      "load_fails": true,
+      "policy": "fail",
+      "external_tokens": 112,
+      "load_steps": 1,
+      "owner_blocks": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "report": {
+        "before": {
+          "status": "RUNNING",
+          "computed": 96
+        },
+        "invalid_blocks": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "other_blocks_before_report": [
+          8,
+          7,
+          6,
+          5,
+          4,
+          3
+        ],
+        "after": {
+          "status": "FINISHED_ERROR",
+          "computed": 16
+        }
+      },
+      "unrelated_affected_by_old_report": true,
+      "reused_before_failure_report": true,
+      "eventually_reused": true,
+      "unrelated_output": {
+        "tokens": [],
+        "chosen_logprobs": [],
+        "finish_reason": "error",
+        "num_cached_tokens": 0,
+        "text": ""
+      },
+      "ttft_s": null,
+      "elapsed_s": 0.05872743437066674,
+      "steps": 1,
+      "free_blocks_after_drain": 8,
+      "deferred_frees_after_drain": 0
+    },
+    {
+      "trial": 1,
+      "defer_block_free": false,
+      "load_fails": true,
+      "policy": "fail",
+      "external_tokens": 112,
+      "load_steps": 1,
+      "owner_blocks": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        1,
+        8
+      ],
+      "report": {
+        "before": {
+          "status": "RUNNING",
+          "computed": 96
+        },
+        "invalid_blocks": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "other_blocks_before_report": [
+          8,
+          1,
+          2,
+          7,
+          6,
+          5
+        ],
+        "after": {
+          "status": "FINISHED_ERROR",
+          "computed": 16
+        }
+      },
+      "unrelated_affected_by_old_report": true,
+      "reused_before_failure_report": true,
+      "eventually_reused": true,
+      "unrelated_output": {
+        "tokens": [],
+        "chosen_logprobs": [],
+        "finish_reason": "error",
+        "num_cached_tokens": 0,
+        "text": ""
+      },
+      "ttft_s": null,
+      "elapsed_s": 0.011589883361011744,
+      "steps": 1,
+      "free_blocks_after_drain": 8,
+      "deferred_frees_after_drain": 0
+    },
+    {
+      "trial": 2,
+      "defer_block_free": false,
+      "load_fails": true,
+      "policy": "fail",
+      "external_tokens": 112,
+      "load_steps": 1,
+      "owner_blocks": [
+        5,
+        6,
+        7,
+        2,
+        1,
+        4,
+        3,
+        8
+      ],
+      "report": {
+        "before": {
+          "status": "RUNNING",
+          "computed": 96
+        },
+        "invalid_blocks": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "other_blocks_before_report": [
+          8,
+          3,
+          4,
+          1,
+          2,
+          7
+        ],
+        "after": {
+          "status": "FINISHED_ERROR",
+          "computed": 16
+        }
+      },
+      "unrelated_affected_by_old_report": true,
+      "reused_before_failure_report": true,
+      "eventually_reused": true,
+      "unrelated_output": {
+        "tokens": [],
+        "chosen_logprobs": [],
+        "finish_reason": "error",
+        "num_cached_tokens": 0,
+        "text": ""
+      },
+      "ttft_s": null,
+      "elapsed_s": 0.011302294209599495,
+      "steps": 1,
+      "free_blocks_after_drain": 8,
+      "deferred_frees_after_drain": 0
+    }
+  ]
+}

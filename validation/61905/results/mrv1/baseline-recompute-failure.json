@@ -1,0 +1,246 @@
+{
+  "source_commit": "852989f580820849113d67d13fd8053e279d0444",
+  "source_diff": "",
+  "source_path": "$VLLM_SOURCE",
+  "torch": "2.14.0+cu130",
+  "cuda": "13.0",
+  "gpu": "NVIDIA H100 PCIe",
+  "mode": "trial",
+  "model_runner_v2_env": "0",
+  "trials": [
+    {
+      "trial": 0,
+      "defer_block_free": false,
+      "load_fails": true,
+      "policy": "recompute",
+      "external_tokens": 112,
+      "load_steps": 1,
+      "owner_blocks": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "report": {
+        "before": {
+          "status": "RUNNING",
+          "computed": 96
+        },
+        "invalid_blocks": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "other_blocks_before_report": [
+          8,
+          7,
+          6,
+          5,
+          4,
+          3
+        ],
+        "after": {
+          "status": "RUNNING",
+          "computed": 16
+        }
+      },
+      "unrelated_affected_by_old_report": true,
+      "reused_before_failure_report": true,
+      "eventually_reused": true,
+      "unrelated_output": {
+        "tokens": [
+          2022,
+          2023,
+          2024,
+          2025,
+          2026,
+          2027,
+          2028,
+          2029
+        ],
+        "chosen_logprobs": [
+          -0.0003415954706724733,
+          -0.028752919286489487,
+          -3.504691630951129e-05,
+          -0.002798333764076233,
+          -0.0007178590167313814,
+          -0.00026043839170597494,
+          -4.756337511935271e-05,
+          -0.002039615996181965
+        ],
+        "finish_reason": "length",
+        "num_cached_tokens": 0,
+        "text": "ization\tforbl program(eapecheck.Forms"
+      },
+      "ttft_s": 1.6599947330541909,
+      "elapsed_s": 1.726000402122736,
+      "steps": 9,
+      "free_blocks_after_drain": 8,
+      "deferred_frees_after_drain": 0
+    },
+    {
+      "trial": 1,
+      "defer_block_free": false,
+      "load_fails": true,
+      "policy": "recompute",
+      "external_tokens": 112,
+      "load_steps": 1,
+      "owner_blocks": [
+        2,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "report": {
+        "before": {
+          "status": "RUNNING",
+          "computed": 96
+        },
+        "invalid_blocks": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "other_blocks_before_report": [
+          8,
+          7,
+          6,
+          5,
+          4,
+          3
+        ],
+        "after": {
+          "status": "RUNNING",
+          "computed": 16
+        }
+      },
+      "unrelated_affected_by_old_report": true,
+      "reused_before_failure_report": true,
+      "eventually_reused": true,
+      "unrelated_output": {
+        "tokens": [
+          2022,
+          2023,
+          2024,
+          2025,
+          2026,
+          2027,
+          2028,
+          2029
+        ],
+        "chosen_logprobs": [
+          -0.0003415954706724733,
+          -0.028752919286489487,
+          -3.504691630951129e-05,
+          -0.002798333764076233,
+          -0.0007178590167313814,
+          -0.00026043839170597494,
+          -4.756337511935271e-05,
+          -0.002039615996181965
+        ],
+        "finish_reason": "length",
+        "num_cached_tokens": 0,
+        "text": "ization\tforbl program(eapecheck.Forms"
+      },
+      "ttft_s": 0.020831839181482792,
+      "elapsed_s": 0.083397445268929,
+      "steps": 9,
+      "free_blocks_after_drain": 8,
+      "deferred_frees_after_drain": 0
+    },
+    {
+      "trial": 2,
+      "defer_block_free": false,
+      "load_fails": true,
+      "policy": "recompute",
+      "external_tokens": 112,
+      "load_steps": 1,
+      "owner_blocks": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "report": {
+        "before": {
+          "status": "RUNNING",
+          "computed": 96
+        },
+        "invalid_blocks": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "other_blocks_before_report": [
+          8,
+          7,
+          6,
+          5,
+          4,
+          3
+        ],
+        "after": {
+          "status": "RUNNING",
+          "computed": 16
+        }
+      },
+      "unrelated_affected_by_old_report": true,
+      "reused_before_failure_report": true,
+      "eventually_reused": true,
+      "unrelated_output": {
+        "tokens": [
+          2022,
+          2023,
+          2024,
+          2025,
+          2026,
+          2027,
+          2028,
+          2029
+        ],
+        "chosen_logprobs": [
+          -0.0003415954706724733,
+          -0.028752919286489487,
+          -3.504691630951129e-05,
+          -0.002798333764076233,
+          -0.0007178590167313814,
+          -0.00026043839170597494,
+          -4.756337511935271e-05,
+          -0.002039615996181965
+        ],
+        "finish_reason": "length",
+        "num_cached_tokens": 0,
+        "text": "ization\tforbl program(eapecheck.Forms"
+      },
+      "ttft_s": 0.02086788695305586,
+      "elapsed_s": 0.0834352383390069,
+      "steps": 9,
+      "free_blocks_after_drain": 8,
+      "deferred_frees_after_drain": 0
+    }
+  ]
+}

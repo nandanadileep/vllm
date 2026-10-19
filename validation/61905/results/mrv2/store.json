@@ -1,0 +1,19 @@
+{
+  "source_commit": "852989f580820849113d67d13fd8053e279d0444",
+  "source_diff": "",
+  "source_path": "$VLLM_SOURCE",
+  "torch": "2.14.0+cu130",
+  "cuda": "13.0",
+  "gpu": "NVIDIA H100 PCIe",
+  "mode": "store",
+  "model_runner_v2_env": "1",
+  "output": {
+    "tokens": [
+      1021
+    ],
+    "chosen_logprobs": [],
+    "finish_reason": "length",
+    "num_cached_tokens": 0,
+    "text": "ade"
+  }
+}
