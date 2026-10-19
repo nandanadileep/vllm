@@ -1,0 +1,13 @@
+Thanks for taking the max_num_seqs case. I rebased the approach onto current main (waiting loop now uses max_num_active_reqs, skip_request, and kv_holding_waiting) and ran extra edge-case tests plus a CPU scheduler simulation.
+
+The core #40004 behavior looks right: a strictly higher-priority waiter preempts the lowest-priority latest-arrival runner, equal priority does not ping-pong, FCFS is unchanged, same-step rollback drops the victim from num_scheduled_tokens, shared LoRA ids stay accounted, unused victim LoRA ids are discarded, and AsyncScheduler follows the same path. On main those tests fail; on this design they pass.
+
+A production-shaped scheduler sim (max_num_seqs=8, 8x priority-10 background, 2x priority-0 interactive, 40 steps after inject) matches the issue report on main: both interactive requests wait until step 40 and preemptions stay 0. With the fix they are scheduled on step 1 with 2 preemptions. Low-priority tokens in the window were 312 vs 314; high-priority tokens were 16 vs 30. No GPU here, so no opt-125m engine run.
+
+Two gaps I think are worth fixing before merge:
+
+1. max_loras is checked before preemption. A higher-priority waiter with a new LoRA is skipped even when evicting the unique-LoRA runner would free a slot. If a lower-priority waiter behind it shares the runner LoRA, that waiter then preempts and is admitted instead. Tests: test_priority_waiting_new_lora_can_preempt_unique_lora_runner, test_priority_waiting_skipped_new_lora_does_not_admit_lower_priority.
+
+2. Preemption still happens before token-budget / KV allocation. If the waiter cannot be admitted after one victim, the victim is already gone and the step leaves an empty running slot. Tests: test_priority_waiting_no_preempt_when_waiter_cannot_fit_token_budget, test_priority_waiting_no_preempt_when_kv_alloc_still_fails. Those two pass on main only because main never preempts here.
+
+I can send a patch with the extra tests and the benchmark script if useful. They live as a new file tests/v1/core/test_priority_waiting_preemption.py so they should apply on top of this PR.
